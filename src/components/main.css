@@ -70,3 +70,8 @@ body {
   margin-right: 4px;
   cursor: pointer;
 }
+.data {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}

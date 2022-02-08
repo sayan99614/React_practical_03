@@ -11,7 +11,12 @@ function UserInput({ data, setData }) {
         alert("You should enter some value");
         return;
       }
-      setData([...data, input]);
+      const tmpdata = {
+        data: input,
+        date: new Date().toLocaleDateString(),
+      };
+      setData([...data, tmpdata]);
+      setInput("");
     }
     return;
   };
