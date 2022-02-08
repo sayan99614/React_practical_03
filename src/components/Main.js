@@ -1,24 +1,29 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, createContext } from "react";
 import "./main.css";
 import UserInput from "./UserInput";
-import TodoImg from "../images/todo.png";
 import Card from "./Card";
+import CardList from "./CardList";
 function Main(props) {
   const [show, setShow] = useState(false);
-  const [data, setData] = useState([
-    {
-      task: "1",
-    },
-    {
-      task: "2",
-    },
-    {
-      task: "3",
-    },
-  ]);
+  const [time, setTime] = useState({
+    date: "",
+    time: "",
+  });
+  const [data, setData] = useState([]);
+
+  useEffect(() => {
+    let interval = null;
+    interval = setInterval(() => {
+      setTime({
+        time: new Date().toLocaleTimeString(),
+        date: new Date().toLocaleDateString(),
+      });
+    }, 1000);
+    return () => clearInterval(interval);
+  });
 
   const accodian = (event) => {
-    if (show === true) {
+    if (show === true && event.key === "Escape") {
       setShow(false);
     }
   };
@@ -36,18 +41,19 @@ function Main(props) {
   return (
     <div className="row">
       <div className="col-sm-4 offset-sm-4 text-center">
-        <div className="img-con mt-3">
-          <img src={TodoImg} alt="todo" className="img" />
-        </div>
-        <button onClick={changeVisibility} className="btn btn-primary mt-2">
-          <i className={`fas fa-${show ? `minus` : `plus`} fa-lg`} />
-        </button>
+        <Card size={"w-50"} clock={time} />
         <div>
           {data.map((item, index) => {
-            return <Card data={item.task} />;
+            return <CardList data={item} key={index} />;
           })}
         </div>
-        {show && <UserInput />}
+        {show && <UserInput data={data} setData={setData} />}
+        <button
+          onClick={changeVisibility}
+          className="btn btn-primary mt-2 mb-5"
+        >
+          <i className={`fas fa-${show ? `minus` : `plus`} fa-lg`} />
+        </button>
       </div>
     </div>
   );

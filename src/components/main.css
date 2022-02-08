@@ -1,13 +1,28 @@
+* {
+  box-sizing: border-box;
+  padding: 0px;
+  margin: 0px;
+}
+body {
+  overflow-x: hidden;
+}
 .container {
   display: flex;
   justify-content: center;
   align-items: center;
 }
-@media only screen and(max-width:300) {
-  .card {
-    margin-top: 50px;
-  }
+.card-jumbo {
+  position: sticky;
+  top: 0;
+  z-index: 1;
+  margin-top: 10px;
+  padding: 5px;
+  border: none;
+  border-radius: 2px;
+  background-color: #4a148c;
+  box-shadow: rgb(168, 156, 156) 3px 3px 9px -3px;
 }
+
 .card {
   margin-top: 10px;
   border: none;
@@ -30,8 +45,28 @@
 .none {
   display: none;
 }
-
 .img {
   width: 100px;
   height: 100px;
+}
+.clock {
+  line-height: 5px;
+}
+
+@media only screen and(max-width:425px) {
+  .card {
+    display: none;
+    margin-top: 5px;
+    margin-left: 2px;
+    margin-right: 2px;
+    border: none;
+    padding: 5px;
+    background-color: #4a148c;
+  }
+}
+
+.ico {
+  margin-left: 4px;
+  margin-right: 4px;
+  cursor: pointer;
 }
