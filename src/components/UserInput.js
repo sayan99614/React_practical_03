@@ -1,9 +1,9 @@
-import React, { useState, useEffect } from "react";
-function UserInput({ data, setData }) {
-  const [input, setInput] = useState("");
-  const handleInput = (event) => {
-    setInput(event.target.value);
-  };
+import React, { useState, useEffect, useContext } from "react";
+function UserInput({ data, setData, input, setInput, handleInput }) {
+  // const [input, setInput] = useState("");
+  // const handleInput = (event) => {
+  //   setInput(event.target.value);
+  // };
 
   const storeInput = (event) => {
     if (event.key === "Enter") {
@@ -13,7 +13,7 @@ function UserInput({ data, setData }) {
       }
       const tmpdata = {
         data: input,
-        id: new Date().getMilliseconds(),
+        id: new Date().getTime().toString(),
         date: new Date().toLocaleDateString(),
       };
       setData([...data, tmpdata]);
@@ -25,7 +25,7 @@ function UserInput({ data, setData }) {
     <div>
       <input
         type="text"
-        placeholder="Type your todo tasks 😃"
+        placeholder=" ✍️ Add your todos...."
         className={`form-control mt-3 w-75 mx-auto`}
         value={input}
         onChange={handleInput}

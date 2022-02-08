@@ -21,7 +21,10 @@ function Main(props) {
     time: "",
   });
   const [data, setData] = useState(getLocalItems());
-
+  const [input, setInput] = useState("");
+  const handleInput = (event) => {
+    setInput(event.target.value);
+  };
   useEffect(() => {
     let interval = null;
     interval = setInterval(() => {
@@ -62,10 +65,26 @@ function Main(props) {
         <Card size={"w-50"} clock={time} />
         <div>
           {data.map((item) => {
-            return <CardList data={item} key={item.id} />;
+            return (
+              <CardList
+                data={item}
+                key={item.id}
+                list={data}
+                setList={setData}
+                setShow={setShow}
+              />
+            );
           })}
         </div>
-        {show && <UserInput data={data} setData={setData} />}
+        {show && (
+          <UserInput
+            data={data}
+            input={input}
+            setInput={setInput}
+            setData={setData}
+            handleInput={handleInput}
+          />
+        )}
         <button
           onClick={changeVisibility}
           className="btn btn-primary mt-2 mb-5"

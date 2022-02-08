@@ -82,3 +82,11 @@ body {
   overflow: hidden;
   text-overflow: ellipsis;
 }
+
+.op-1:hover {
+  color: rgba(219, 20, 20, 0.747);
+}
+
+.op-2:hover {
+  color: green;
+}
