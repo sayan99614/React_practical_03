@@ -1,15 +1,26 @@
 import React, { useState, useEffect, createContext } from "react";
 import "./main.css";
+import { reactLocalStorage } from "reactjs-localstorage";
 import UserInput from "./UserInput";
 import Card from "./Card";
 import CardList from "./CardList";
+
+function getLocalItems() {
+  let list = reactLocalStorage.get(new Date().toLocaleDateString());
+  if (list) {
+    return JSON.parse(list);
+  } else {
+    return [];
+  }
+}
+
 function Main(props) {
   const [show, setShow] = useState(false);
   const [time, setTime] = useState({
     date: "",
     time: "",
   });
-  const [data, setData] = useState([]);
+  const [data, setData] = useState(getLocalItems());
 
   useEffect(() => {
     let interval = null;
@@ -35,6 +46,13 @@ function Main(props) {
     };
   }, [show]);
 
+  useEffect(() => {
+    reactLocalStorage.set(
+      new Date().toLocaleDateString(),
+      JSON.stringify(data)
+    );
+  }, [data]);
+
   const changeVisibility = () => {
     setShow(!show);
   };
@@ -43,8 +61,8 @@ function Main(props) {
       <div className="col-sm-4 offset-sm-4 text-center">
         <Card size={"w-50"} clock={time} />
         <div>
-          {data.map((item, index) => {
-            return <CardList data={item} key={index} />;
+          {data.map((item) => {
+            return <CardList data={item} key={item.id} />;
           })}
         </div>
         {show && <UserInput data={data} setData={setData} />}

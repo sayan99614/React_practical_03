@@ -1,10 +1,10 @@
-import React, { useState } from "react";
-
+import React, { useState, useEffect } from "react";
 function UserInput({ data, setData }) {
   const [input, setInput] = useState("");
   const handleInput = (event) => {
     setInput(event.target.value);
   };
+
   const storeInput = (event) => {
     if (event.key === "Enter") {
       if (input === "") {
@@ -13,6 +13,7 @@ function UserInput({ data, setData }) {
       }
       const tmpdata = {
         data: input,
+        id: new Date().getMilliseconds(),
         date: new Date().toLocaleDateString(),
       };
       setData([...data, tmpdata]);
