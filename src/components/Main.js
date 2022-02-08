@@ -22,6 +22,8 @@ function Main(props) {
   });
   const [data, setData] = useState(getLocalItems());
   const [input, setInput] = useState("");
+  const [editelmid, setEditElmId] = useState(null);
+  const [isedit, setIsEdit] = useState(false);
   const handleInput = (event) => {
     setInput(event.target.value);
   };
@@ -72,6 +74,12 @@ function Main(props) {
                 list={data}
                 setList={setData}
                 setShow={setShow}
+                input={input}
+                setInput={setInput}
+                editelmid={editelmid}
+                setEditElmId={setEditElmId}
+                isedit={isedit}
+                setIsEdit={setIsEdit}
               />
             );
           })}
@@ -83,6 +91,11 @@ function Main(props) {
             setInput={setInput}
             setData={setData}
             handleInput={handleInput}
+            editelmid={editelmid}
+            setEditElmId={setEditElmId}
+            isedit={isedit}
+            setIsEdit={setIsEdit}
+            setShow={setShow}
           />
         )}
         <button

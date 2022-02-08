@@ -1,7 +1,16 @@
 import React, { useState } from "react";
 
-function CardList({ data, list, setList, setShow }) {
-  const [isedit, setIsEdit] = useState(false);
+function CardList({
+  data,
+  list,
+  setList,
+  setShow,
+  input,
+  setInput,
+  setEditElmId,
+  isedit,
+  setIsEdit,
+}) {
   const deleteItem = (id) => {
     const updatedItems = list.filter((item) => {
       return item.id !== id;
@@ -12,11 +21,12 @@ function CardList({ data, list, setList, setShow }) {
 
   const editItem = (id) => {
     setIsEdit(!isedit);
-    setShow(isedit);
+    setShow(true);
     const singleTodo = list.find((item) => {
       return item.id === id;
     });
-    console.log(singleTodo);
+    setInput(singleTodo.data);
+    setEditElmId(id);
   };
 
   return (
