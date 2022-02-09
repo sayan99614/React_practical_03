@@ -57,7 +57,14 @@ function Main(props) {
       JSON.stringify(data)
     );
   }, [data]);
-
+  useEffect(() => {
+    let yesterday = new Date(new Date());
+    yesterday.setDate(yesterday.getDate() - 1);
+    yesterday = yesterday.toLocaleDateString();
+    if (localStorage.getItem(yesterday)) {
+      localStorage.removeItem(yesterday);
+    }
+  }, []);
   const changeVisibility = () => {
     setShow(!show);
   };
