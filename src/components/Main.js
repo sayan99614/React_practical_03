@@ -70,47 +70,48 @@ function Main(props) {
   };
   return (
     <div className="row">
-      <div className="col-sm-4 offset-sm-4 text-center">
-        <Card size={"w-50"} clock={time} />
-        <div>
-          {data.map((item) => {
-            return (
-              <CardList
-                data={item}
-                key={item.id}
-                list={data}
-                setList={setData}
-                setShow={setShow}
-                input={input}
-                setInput={setInput}
-                editelmid={editelmid}
-                setEditElmId={setEditElmId}
-                isedit={isedit}
-                setIsEdit={setIsEdit}
-              />
-            );
-          })}
+      <div className="col-sm-4 offset-sm-4 text-center flex-container mt-5">
+        <div className="card shadow-sm">
+          <Card />
+          <div className="cardlist">
+            {data.map((item) => {
+              return (
+                <CardList
+                  data={item}
+                  key={item.id}
+                  list={data}
+                  setList={setData}
+                  setShow={setShow}
+                  input={input}
+                  setInput={setInput}
+                  editelmid={editelmid}
+                  setEditElmId={setEditElmId}
+                  isedit={isedit}
+                  setIsEdit={setIsEdit}
+                />
+              );
+            })}
+          </div>
+          {show && (
+            <UserInput
+              data={data}
+              input={input}
+              setInput={setInput}
+              setData={setData}
+              handleInput={handleInput}
+              editelmid={editelmid}
+              setEditElmId={setEditElmId}
+              isedit={isedit}
+              setIsEdit={setIsEdit}
+              setShow={setShow}
+            />
+          )}
+          <div className="text-center">
+            <button onClick={changeVisibility} className="btn btn-primary">
+              <i className={`fas fa-${show ? `minus` : `plus`} fa-lg`} />
+            </button>
+          </div>
         </div>
-        {show && (
-          <UserInput
-            data={data}
-            input={input}
-            setInput={setInput}
-            setData={setData}
-            handleInput={handleInput}
-            editelmid={editelmid}
-            setEditElmId={setEditElmId}
-            isedit={isedit}
-            setIsEdit={setIsEdit}
-            setShow={setShow}
-          />
-        )}
-        <button
-          onClick={changeVisibility}
-          className="btn btn-primary mt-2 mb-5"
-        >
-          <i className={`fas fa-${show ? `minus` : `plus`} fa-lg`} />
-        </button>
       </div>
     </div>
   );
