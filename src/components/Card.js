@@ -21,7 +21,7 @@ function Card(props) {
     }
   }
   return (
-    <div className="d-flex justify-content-between mt-3 mb-3 sticky">
+    <div className="d-flex justify-content-between mt-3 mb-3 sticky bg-white">
       <div className="d-flex justify-content-between">
         <div className="date">{date[2]}</div>
         <div className="d-flex flex-column date-line">
