@@ -8,15 +8,15 @@ function Card(props) {
         return "SUNDAY";
       case 1:
         return "MONDAY";
-      case 3:
+      case 2:
         return "TUESDAY";
-      case 4:
+      case 3:
         return "WEDNESDAY";
-      case 5:
+      case 4:
         return "THURSDAY";
-      case 6:
+      case 5:
         return "FRIDAY";
-      case 7:
+      case 6:
         return "SATURDAY";
     }
   }
