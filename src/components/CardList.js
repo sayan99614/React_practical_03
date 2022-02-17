@@ -17,6 +17,7 @@ function CardList({
     });
 
     setList(updatedItems);
+    setInput("");
   };
 
   const editItem = (id) => {
