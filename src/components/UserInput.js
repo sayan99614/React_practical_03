@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useContext } from "react";
+import React from "react";
 function UserInput({
   data,
   setData,
@@ -10,11 +10,6 @@ function UserInput({
   setIsEdit,
   setShow,
 }) {
-  // const [input, setInput] = useState("");
-  // const handleInput = (event) => {
-  //   setInput(event.target.value);
-  // };
-
   const storeInput = (event) => {
     if (event.key === "Enter") {
       if (input === "") {
@@ -38,8 +33,10 @@ function UserInput({
           data: input,
           id: new Date().getTime().toString(),
           date: new Date().toLocaleDateString(),
+          completed: false,
         };
         setData([...data, tmpdata]);
+        setShow(false);
       }
       setInput("");
     }
